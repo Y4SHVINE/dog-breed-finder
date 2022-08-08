@@ -2,9 +2,9 @@ env:
   browser: true
   es6: true
   node: true
-extends: '@ridedott/eslint-config'
+extends: ['plugin:react/recommended', '@ridedott/eslint-config']
 overrides:
-  - files: ./src/**/*spec.ts
+  - files: ['./src/**/*spec.ts', './src/**/*spec.tsx']
     rules:
       '@typescript-eslint/no-magic-numbers': 'off'
 parserOptions:

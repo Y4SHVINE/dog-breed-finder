@@ -15,10 +15,11 @@ const configuration = {
     inline: true,
     overlay: true,
     writeToDisk: false,
+    open: true,
   },
   devtool: 'cheap-module-eval-source-map',
   entry: {
-    app: './src/index.ts',
+    app: './src/index.tsx',
   },
   mode: 'development',
   module: {
@@ -31,7 +32,7 @@ const configuration = {
         test: /\.html$/u,
       },
       {
-        test: /\.ts$/u,
+        test: /\.tsx?$/u,
         use: [
           {
             loader: 'ts-loader',
@@ -97,7 +98,7 @@ const configuration = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.ts'],
+    extensions: ['.js', '.ts', '.tsx'],
     mainFields: ['browser', 'module', 'main'],
   },
   watch: true,
