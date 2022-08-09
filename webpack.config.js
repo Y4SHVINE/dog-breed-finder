@@ -46,10 +46,11 @@ const configuration = {
         ],
       },
       {
-        test: /\.css$/u,
+        test: /\.scss$/u,
         use: [
-          'style-loader',
+          'react-style-loader',
           'css-loader',
+          'sass-loader',
           {
             loader: 'postcss-loader',
             options: {
@@ -109,7 +110,7 @@ const configuration = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.ts', '.tsx'],
+    extensions: ['.js', '.ts', '.tsx', '.scss'],
     mainFields: ['browser', 'module', 'main'],
   },
   watch: true,

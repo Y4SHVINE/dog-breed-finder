@@ -1,6 +1,6 @@
 import React from 'react';
 import BreedFinder from '../breedFinder/breed-fInder-component';
-import './app.css';
+import './app.scss';
 
 export const App = (): JSX.Element => {
   return (

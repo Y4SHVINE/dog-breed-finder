@@ -1,5 +1,5 @@
 // CSS imported here will be bundled by webpack
-import './index.css';
+import './index.scss';
 
 // You can import any components here
 import React from 'react';

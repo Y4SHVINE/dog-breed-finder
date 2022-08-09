@@ -1,5 +1,5 @@
 import React from 'react';
-import './header-component.css';
+import './header-component.scss';
 
 interface HeaderProps {
   /**
@@ -14,7 +14,7 @@ const Header = ({ className }: HeaderProps): JSX.Element => {
       <div className="header-section">
         <img
           src="https://ik.imagekit.io/yashvine/dog-breed-finder/dog-vector.jpg"
-          alt="logo image"
+          alt="Dog Breed Finder"
         />
         <h2>Dog Breed Finder</h2>
       </div>
