@@ -1,0 +1,15 @@
+.header-section {
+  align-items: center;
+  background: #2e2d2d;
+  color: #fff;
+  display: flex;
+  height: 100px;
+  width: 100%;
+}
+
+img {
+  height: inherite;
+  margin-right: 20px;
+  padding: 10px 10px;
+  width: 80px;
+}
