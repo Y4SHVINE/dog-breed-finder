@@ -34,7 +34,6 @@ const Upload = ({ className, setUploadedImage }: UploadProps): JSX.Element => {
   const handleLoad = (event: ChangeEvent<HTMLImageElement>) => {
     const { target } = event;
     setUploadedImage(target);
-    // console.log(target);
   };
 
   const fileInput = React.createRef<HTMLInputElement>();

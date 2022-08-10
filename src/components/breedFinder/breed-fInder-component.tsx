@@ -16,11 +16,14 @@ const alpha = 0.5;
 
 const BreedFinder = ({ className }: BreedFinderProps): JSX.Element => {
   const [model, setModel] = useState<mobilenet.MobileNet | null>(null);
-  const [uploadedImage, setUploadedImage] = useState<EventTarget | null>(null);
 
   const loadModel = async (): Promise<mobilenet.MobileNet> => {
     return await mobilenet.load({ version, alpha });
   };
+
+  const predictImage = async (uploadedImage):Promise<void> =>{
+    return await model.classify(uploadedImage);
+  }
 
   useEffect((): void => {
     if (model === null) {
@@ -29,21 +32,31 @@ const BreedFinder = ({ className }: BreedFinderProps): JSX.Element => {
           setModel(loadedModel);
         },
         (error): void => {
-          console.log(error);
+          console.error(error);
         },
       );
     }
   }, []);
 
-  useEffect((): void => {
-    console.log(model);
-    console.log(uploadedImage);
-  }, [uploadedImage]);
+  const getPredictionByImage = (uploadedImage) =>{
+    if(model && uploadedImage){
+      predictImage(uploadedImage).then(
+        (prediction) => {
+          debugger
+          console.log(prediction);
+        },
+        (error): void => {
+          debugger
+          console.error(error);
+        },
+      );
+    }
+  }
 
   return (
     <div className={className}>
       <Header />
-      <Upload setUploadedImage={setUploadedImage} />
+      <Upload setUploadedImage={getPredictionByImage} />
     </div>
   );
 };
