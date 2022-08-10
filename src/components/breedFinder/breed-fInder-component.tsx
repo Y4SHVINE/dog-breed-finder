@@ -3,6 +3,14 @@ import * as mobilenet from '@tensorflow-models/mobilenet';
 import './breed-fInder-component.scss';
 import Header from './Header/header-component';
 import Upload from './Upload/upload-component';
+import { Prediction } from '../../interfaces/prediction-model';
+import { BreedList } from '../../interfaces/breeds-response-model';
+import { getAllDogBreeds } from '../../services/dog-service';
+import {
+  findSpecificBreed,
+  mostReleventPrediction,
+} from '../../utils/dog/dog-prediction-util';
+import Gallery from './Gallery/gallery-component';
 
 interface BreedFinderProps {
   /**
@@ -16,14 +24,24 @@ const alpha = 0.5;
 
 const BreedFinder = ({ className }: BreedFinderProps): JSX.Element => {
   const [model, setModel] = useState<mobilenet.MobileNet | null>(null);
+  const [allBreeds, setAllBreeds] = useState<BreedList>({});
+  const [selectedBreed, setSelectedBreed] = useState<string | null>(null);
 
   const loadModel = async (): Promise<mobilenet.MobileNet> => {
     return await mobilenet.load({ version, alpha });
   };
 
-  const predictImage = async (uploadedImage):Promise<void> =>{
-    return await model.classify(uploadedImage);
-  }
+  const predictImage = async (
+    uploadedImage: HTMLImageElement,
+  ): Promise<Prediction[]> => {
+    return await model!.classify(uploadedImage);
+  };
+
+  const getAllBreeds = () => {
+    getAllDogBreeds().then(res => {
+      setAllBreeds(res?.data?.message);
+    });
+  };
 
   useEffect((): void => {
     if (model === null) {
@@ -36,27 +54,33 @@ const BreedFinder = ({ className }: BreedFinderProps): JSX.Element => {
         },
       );
     }
+    if (Object.keys(allBreeds).length === 0) getAllBreeds();
   }, []);
 
-  const getPredictionByImage = (uploadedImage) =>{
-    if(model && uploadedImage){
+  const getPredictionByImage = (uploadedImage: HTMLImageElement) => {
+    if (model && uploadedImage) {
       predictImage(uploadedImage).then(
-        (prediction) => {
-          debugger
-          console.log(prediction);
+        predictions => {
+          if (predictions) {
+            const correctPrediction = mostReleventPrediction(
+              predictions,
+              allBreeds,
+            );
+            setSelectedBreed(findSpecificBreed(correctPrediction, allBreeds));
+          }
         },
         (error): void => {
-          debugger
           console.error(error);
         },
       );
     }
-  }
+  };
 
   return (
     <div className={className}>
       <Header />
       <Upload setUploadedImage={getPredictionByImage} />
+      <Gallery selectedBreed={selectedBreed || ''} />
     </div>
   );
 };

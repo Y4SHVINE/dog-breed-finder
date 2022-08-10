@@ -11,11 +11,12 @@ interface UploadProps {
   /**
    * set uploaded Image Function
    */
-  setUploadedImage: (target: EventTarget) => void;
+  setUploadedImage: (target: HTMLImageElement) => void;
 }
 
 const Upload = ({ className, setUploadedImage }: UploadProps): JSX.Element => {
   const [imgSrc, setImgSrc] = useState('');
+  const fileInput = React.createRef<HTMLInputElement>();
 
   const handleClick = () => {
     fileInput.current!.click();
@@ -35,8 +36,6 @@ const Upload = ({ className, setUploadedImage }: UploadProps): JSX.Element => {
     const { target } = event;
     setUploadedImage(target);
   };
-
-  const fileInput = React.createRef<HTMLInputElement>();
 
   return (
     <div className={className}>
