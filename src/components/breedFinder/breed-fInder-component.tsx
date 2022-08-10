@@ -3,6 +3,7 @@ import * as mobilenet from '@tensorflow-models/mobilenet';
 import './breed-fInder-component.scss';
 import Header from './Header/header-component';
 import Upload from './Upload/upload-component';
+import Gallery from './Gallery/gallery-component';
 import { Prediction } from '../../interfaces/prediction-model';
 import { BreedList } from '../../interfaces/breeds-response-model';
 import { getAllDogBreeds } from '../../services/dog-service';
@@ -10,7 +11,6 @@ import {
   findSpecificBreed,
   mostReleventPrediction,
 } from '../../utils/dog/dog-prediction-util';
-import Gallery from './Gallery/gallery-component';
 
 interface BreedFinderProps {
   /**
