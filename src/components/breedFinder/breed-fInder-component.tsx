@@ -59,6 +59,7 @@ const BreedFinder = ({ className }: BreedFinderProps): JSX.Element => {
 
   const getPredictionByImage = (uploadedImage: HTMLImageElement) => {
     if (model && uploadedImage) {
+      setSelectedBreed(null);
       predictImage(uploadedImage).then(
         predictions => {
           if (predictions) {
@@ -80,7 +81,7 @@ const BreedFinder = ({ className }: BreedFinderProps): JSX.Element => {
     <div className={className}>
       <Header />
       <Upload setUploadedImage={getPredictionByImage} />
-      <Gallery selectedBreed={selectedBreed || ''} />
+      {selectedBreed && <Gallery selectedBreed={selectedBreed || ''} />}
     </div>
   );
 };
