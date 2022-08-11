@@ -83,7 +83,7 @@
     "format": "prettier --check \"**/*.{css,js,json,md,ts,yml,yaml}\"",
     "format:fix": "prettier --write \"**/*.{css,js,json,md,ts,yml,yaml}\"",
     "husky:lint-staged": "lint-staged",
-    "husky:pre-commit": "run-p husky:lint-staged",
+    "husky:pre-commit": "run-p",
     "lint": "run-p lint:css lint:ts",
     "lint:css": "stylelint 'src/**/*.css'",
     "lint:css:fix": "stylelint --fix 'src/**/*.css'",

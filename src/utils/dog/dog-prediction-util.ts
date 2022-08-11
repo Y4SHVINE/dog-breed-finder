@@ -58,10 +58,21 @@ export const findSpecificBreed = (
 
     // for joined names
     const jNameBreed = breedKeys.find(jn => jn === allNameCategories.join(''));
-    if (jNameBreed !== undefined) return jNameBreed;
+    if (jNameBreed !== undefined) {
+      breedKey = jNameBreed;
+      break;
+    }
 
     // for sub categories
+    for (let i = 0; i < allNameCategories.length; i++) {
+      const nameElement = allNameCategories[i];
+      const keyBreed = breedKeys.find(bk => bk === nameElement);
+      if (keyBreed !== undefined) {
+        breedKey = keyBreed;
+        break;
+      }
+    }
+    if (breedKey !== '') break;
   }
-
-  return breedKeys[0]; //TODO: breedKey;
+  return breedKey;
 };
