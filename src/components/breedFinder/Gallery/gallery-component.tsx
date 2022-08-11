@@ -24,7 +24,7 @@ const Gallery = ({ className, selectedBreed }: GalleryProps): JSX.Element => {
   const [error, setError] = useState<boolean>(false);
 
   const fetchImages = () => {
-    getImagesByBreed(selectedBreed, 10)
+    getImagesByBreed(selectedBreed, 20)
       .then(res => {
         const imageData = res?.data?.message || [];
         setImages(currentImages => {

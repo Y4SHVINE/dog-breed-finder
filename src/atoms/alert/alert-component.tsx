@@ -54,6 +54,7 @@ const Alert = ({
       onClose={handleClose}
     >
       <MuiAlert
+        data-testid="alert-message-container-id"
         className="alert-message-container"
         onClose={handleClose}
         severity={severity}

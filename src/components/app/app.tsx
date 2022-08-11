@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import BreedFinder from '../breedFinder/breed-fInder-component';
-import './app.scss';
 
 export const App = (): JSX.Element => {
   return (

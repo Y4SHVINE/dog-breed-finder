@@ -36,7 +36,7 @@ const isPredictionABreed = (
 export const mostReleventPrediction = (
   predictions: Prediction[],
   allBreeds: BreedList,
-) => {
+): Prediction | undefined => {
   return predictions.find((prediction: Prediction): boolean => {
     const predictedNames: string[] = prediction.className.split(', ');
     return (
