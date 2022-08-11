@@ -12,6 +12,7 @@ export const getAllDogBreeds = async (): Promise<AxiosResponse<
 
 export const getImagesByBreed = async (
   breed: string,
+  numberOfImages: number,
 ): Promise<AxiosResponse<BreedImagesResponse>> => {
-  return axios.get(`${baseUrl}breed/${breed}/images`);
+  return axios.get(`${baseUrl}breed/${breed}/images/random/${numberOfImages}`);
 };

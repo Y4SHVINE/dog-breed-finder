@@ -7,6 +7,8 @@ const isPredictionABreed = (
 ): boolean => {
   const allNameCategories = predictedName.toLowerCase().split(' ');
   const breedKeys = Object.keys(allBreeds);
+
+  // sticking to two sub categories for initial implementation
   const mainBreedName = allNameCategories.pop();
   const subBreedName =
     allNameCategories.length > 0 ? allNameCategories.pop() : '';
@@ -63,7 +65,7 @@ export const findSpecificBreed = (
       break;
     }
 
-    // for sub categories
+    // for name categories
     for (let i = 0; i < allNameCategories.length; i++) {
       const nameElement = allNameCategories[i];
       const keyBreed = breedKeys.find(bk => bk === nameElement);

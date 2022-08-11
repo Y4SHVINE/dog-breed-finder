@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { getImagesByBreed } from '../../../services/dog-service';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import './gallery-component.scss';
 import { Grid } from '@mui/material';
+import './gallery-component.scss';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 interface GalleryProps {
   /**
@@ -12,28 +13,29 @@ interface GalleryProps {
   /**
    * Selected Breed
    */
-  selectedBreed?: string;
+  selectedBreed: string;
 }
 
 const Gallery = ({ className, selectedBreed }: GalleryProps): JSX.Element => {
   const [images, setImages] = useState<string[]>([]);
-  const loader = useRef(null);
+  const loaderDiv = useRef(null);
 
   const fetchImages = () => {
-    getImagesByBreed(selectedBreed || '').then(res => {
+    getImagesByBreed(selectedBreed, 10).then(res => {
       const imageData = res?.data?.message || [];
-      setImages(currentImages => [...currentImages, ...imageData]);
+      setImages(currentImages => {
+        const filteredImages = imageData.filter(
+          img => currentImages.indexOf(img) === -1,
+        );
+        return [...currentImages, ...filteredImages];
+      });
     });
   };
 
   const handleObserver = useCallback(
     (entries: IntersectionObserverEntry[]) => {
       const target = entries[0];
-      if (
-        target.isIntersecting &&
-        selectedBreed !== null &&
-        selectedBreed !== ''
-      ) {
+      if (target.isIntersecting && selectedBreed) {
         fetchImages();
       }
     },
@@ -47,7 +49,7 @@ const Gallery = ({ className, selectedBreed }: GalleryProps): JSX.Element => {
       threshold: 0,
     };
     const observer = new IntersectionObserver(handleObserver, option);
-    if (loader.current) observer.observe(loader.current);
+    if (loaderDiv.current) observer.observe(loaderDiv.current);
   }, [handleObserver]);
 
   return (
@@ -60,12 +62,13 @@ const Gallery = ({ className, selectedBreed }: GalleryProps): JSX.Element => {
               height="100%"
               src={image}
               width="100%"
-              placeholder={<h4>Loading...</h4>}
+              effect="blur"
+              placeholderSrc="https://ik.imagekit.io/yashvine/dog-breed-finder/dog-vector.jpg"
             />
           </Grid>
         ))}
       </Grid>
-      <div ref={loader} />
+      <div ref={loaderDiv} />
     </div>
   );
 };
