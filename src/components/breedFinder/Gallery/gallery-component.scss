@@ -1,7 +1,17 @@
-.img-grid-item {
-  height: 500px;
-}
-
 .image-grid-container {
-  padding: 50px 50px;
+  display: block;
+  columns: 12rem;
+  gap: 1rem;
+
+  figure {
+    width: 100%;
+    max-width: 16rem;
+    margin-bottom: 1rem;
+    break-inside: avoid;
+
+    img {
+      width: 100%;
+      border-radius: 0.5rem;
+    }
+  }
 }

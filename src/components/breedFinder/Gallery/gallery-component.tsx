@@ -1,9 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { getImagesByBreed } from '../../../services/dog-service';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Grid } from '@mui/material';
 import './gallery-component.scss';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { errors } from '../../../utils/messages/error-message-util';
+import Alert from '../../../atoms/alert/alert-component';
 
 interface GalleryProps {
   /**
@@ -18,18 +20,21 @@ interface GalleryProps {
 
 const Gallery = ({ className, selectedBreed }: GalleryProps): JSX.Element => {
   const [images, setImages] = useState<string[]>([]);
-  const loaderDiv = useRef(null);
+  const loaderDiv = React.createRef<HTMLInputElement>();
+  const [error, setError] = useState<boolean>(false);
 
   const fetchImages = () => {
-    getImagesByBreed(selectedBreed, 10).then(res => {
-      const imageData = res?.data?.message || [];
-      setImages(currentImages => {
-        const filteredImages = imageData.filter(
-          img => currentImages.indexOf(img) === -1,
-        );
-        return [...currentImages, ...filteredImages];
-      });
-    });
+    getImagesByBreed(selectedBreed, 10)
+      .then(res => {
+        const imageData = res?.data?.message || [];
+        setImages(currentImages => {
+          const filteredImages = imageData.filter(
+            img => currentImages.indexOf(img) === -1,
+          );
+          return [...currentImages, ...filteredImages];
+        });
+      })
+      .catch(() => setError(true));
   };
 
   const handleObserver = useCallback(
@@ -54,18 +59,22 @@ const Gallery = ({ className, selectedBreed }: GalleryProps): JSX.Element => {
 
   return (
     <div className={className}>
-      <Grid container spacing={2} className="image-grid-container">
+      {error && (
+        <Alert
+          message={errors.imageFetchError}
+          severity="error"
+          onClose={() => setError(false)}
+        />
+      )}
+      <Grid
+        container
+        spacing={2}
+        className="m-auto container justify-content-center image-grid-container"
+      >
         {images.map((image, index) => (
-          <Grid item xs={12} md={6} className="img-grid-item" key={index}>
-            <LazyLoadImage
-              alt={image}
-              height="100%"
-              src={image}
-              width="100%"
-              effect="blur"
-              placeholderSrc="https://ik.imagekit.io/yashvine/dog-breed-finder/dog-vector.jpg"
-            />
-          </Grid>
+          <figure key={index}>
+            <LazyLoadImage alt={image} src={image} className="img-grid-item" />
+          </figure>
         ))}
       </Grid>
       <div ref={loaderDiv} />

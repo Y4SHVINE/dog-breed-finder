@@ -1,5 +1,44 @@
-/* Global CSS styles applied to the whole app */
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary: #ffc900;
+  --primary-rgb: 255, 201, 0;
+
+  --dark: #161616;
+  --dark-rgb: 22, 22, 22;
+
+  --light: #fbfbfb;
+  --light-rgb: 251, 251, 251;
+}
+
+* {
+  font-family: 'DynaPuff', cursive !important;
+  box-sizing: border-box;
+}
 
 body {
-  margin: 0;
+  background: url(./assets/bg.png);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow-y: overlay;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-clip: padding-box;
+  background-color: rgba(var(--primary-rgb), 0.75);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
 }

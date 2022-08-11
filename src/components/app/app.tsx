@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import BreedFinder from '../breedFinder/breed-fInder-component';
 import './app.scss';
 

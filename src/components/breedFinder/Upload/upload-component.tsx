@@ -38,30 +38,13 @@ const Upload = ({ className, setUploadedImage }: UploadProps): JSX.Element => {
   };
 
   return (
-    <div className={className}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <div className="upload-grid-item-wrapper btn-section">
-            <input
-              hidden
-              type="file"
-              ref={fileInput}
-              onChange={handleChange}
-              accept="image/*"
-            />
-            <Button
-              variant="contained"
-              className="upload-btn"
-              id="upload"
-              onClick={handleClick}
-            >
-              Upload Image
-            </Button>
-          </div>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <div className="upload-grid-item-wrapper">
-            {imgSrc && (
+    <div className="min-vh-100 d-flex align-items-center position-relative">
+      <div className="upload-container">
+        <div className="content">
+          {!imgSrc && <h5>Selected image will appear here</h5>}
+          <br />
+          {imgSrc && (
+            <div className="img-container">
               <img
                 className="uploaded-img"
                 alt="dog image"
@@ -69,10 +52,28 @@ const Upload = ({ className, setUploadedImage }: UploadProps): JSX.Element => {
                 src={imgSrc}
                 onLoad={handleLoad}
               />
-            )}
-          </div>
-        </Grid>
-      </Grid>
+            </div>
+          )}
+          <input
+            hidden
+            type="file"
+            ref={fileInput}
+            onChange={handleChange}
+            accept="image/*"
+          />
+          <Button
+            variant="contained"
+            className="upload-btn"
+            id="upload"
+            onClick={handleClick}
+          >
+            {imgSrc ? 'Update' : 'Upload'} Image
+          </Button>
+        </div>
+      </div>
+      {imgSrc && (
+        <h2 className="scroll-text">Scroll to see the fetched images</h2>
+      )}
     </div>
   );
 };

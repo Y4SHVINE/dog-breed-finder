@@ -73,12 +73,12 @@ const configuration = {
         ],
       },
       {
-        test: /\.(png|jpg|gif)$/i,
+        test: /\.(jpg|png|svg)$/,
         use: [
           {
             loader: 'url-loader',
             options: {
-              limit: 8192,
+              limit: 81920,
             },
           },
         ],
@@ -104,6 +104,7 @@ const configuration = {
       inject: true,
       minify: false,
       template: 'src/index.html',
+      favicon: 'src/favicon.ico',
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),

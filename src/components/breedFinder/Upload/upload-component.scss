@@ -1,14 +1,94 @@
-.upload-grid-item-wrapper {
+.upload-btn {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
+  align-items: center !important;
+  font-family: inherit !important;
+  font-weight: 500 !important;
+  font-size: 18px !important;
+  padding: 0.7em 1.4em 0.7em 1.1em !important;
+  color: var(--dark) !important;
+  background: var(--primary) !important;
+  border: none !important;
+  box-shadow: 0 0.4em 1.5em -0.5em var(--primary) !important;
+  letter-spacing: 0.05em !important;
+  border-radius: 0.5em !important;
+  cursor: pointer;
+  touch-action: manipulation;
 }
 
-.upload-grid-item-wrapper.btn-section {
-  @media screen and (max-width: 900px) {
-    height: 75px;
+.upload-btn:hover {
+  box-shadow: 0 0.2em 1.5em -0.5em var(--primary) !important;
+}
+
+.upload-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 500px;
+  margin: auto;
+  background: inherit;
+  border-radius: 10px;
+  border: 1px solid rgba(var(--primary-rgb), 0.25);
+  overflow: hidden;
+  text-align: center;
+
+  .content {
+    z-index: 1;
+
+    .img-container {
+      width: 90%;
+      height: 300px;
+      margin: auto;
+      overflow: hidden;
+      margin-bottom: 30px;
+      border-radius: 10px;
+
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    h5 {
+      color: var(--light);
+    }
   }
+}
+
+.scroll-text {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  width: fit-content;
+  margin: auto;
+  font-size: 14px;
+  letter-spacing: 3px;
+  font-weight: 300;
+  color: var(--light);
+  animation: hopText 0.75s alternate infinite;
+}
+
+@keyframes hopText {
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+.upload-container:after {
+  content: '';
+  width: inherit;
+  height: inherit;
+  background: inherit;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.05);
+  filter: blur(25px);
 }
 
 .uploaded-img {

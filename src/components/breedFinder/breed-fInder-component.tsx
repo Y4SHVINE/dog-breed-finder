@@ -11,6 +11,8 @@ import {
   findSpecificBreed,
   mostReleventPrediction,
 } from '../../utils/dog/dog-prediction-util';
+import { errors } from '../../utils/messages/error-message-util';
+import Alert from '../../atoms/alert/alert-component';
 
 interface BreedFinderProps {
   /**
@@ -26,6 +28,7 @@ const BreedFinder = ({ className }: BreedFinderProps): JSX.Element => {
   const [model, setModel] = useState<mobilenet.MobileNet | null>(null);
   const [allBreeds, setAllBreeds] = useState<BreedList>({});
   const [selectedBreed, setSelectedBreed] = useState<string | null>(null);
+  const [error, setError] = useState<boolean>(false);
 
   const loadModel = async (): Promise<mobilenet.MobileNet> => {
     return await mobilenet.load({ version, alpha });
@@ -49,8 +52,8 @@ const BreedFinder = ({ className }: BreedFinderProps): JSX.Element => {
         (loadedModel: mobilenet.MobileNet) => {
           setModel(loadedModel);
         },
-        (error): void => {
-          console.error(error);
+        (_): void => {
+          setError(true);
         },
       );
     }
@@ -70,8 +73,8 @@ const BreedFinder = ({ className }: BreedFinderProps): JSX.Element => {
             setSelectedBreed(findSpecificBreed(correctPrediction, allBreeds));
           }
         },
-        (error): void => {
-          console.error(error);
+        (): void => {
+          setError(true);
         },
       );
     }
@@ -79,6 +82,13 @@ const BreedFinder = ({ className }: BreedFinderProps): JSX.Element => {
 
   return (
     <div className={className}>
+      {error && (
+        <Alert
+          message={errors.generalError}
+          severity="error"
+          onClose={() => setError(false)}
+        />
+      )}
       <Header />
       <Upload setUploadedImage={getPredictionByImage} />
       {selectedBreed && <Gallery selectedBreed={selectedBreed || ''} />}
