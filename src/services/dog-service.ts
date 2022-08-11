@@ -1,6 +1,6 @@
 import { BreedListResponse } from '../interfaces/breeds-response-model';
 import axios, { AxiosResponse } from 'axios';
-import { BreedImagesResponse } from '../interfaces/breed-images-response.model';
+import { BreedImagesResponse } from '../interfaces/breed-img-response-model';
 
 const baseUrl = 'https://dog.ceo/api/';
 
