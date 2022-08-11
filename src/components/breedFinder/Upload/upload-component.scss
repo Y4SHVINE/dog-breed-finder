@@ -1,22 +1,22 @@
 .upload-btn {
   display: flex;
-  align-items: center !important;
-  font-family: inherit !important;
-  font-weight: 500 !important;
-  font-size: 18px !important;
-  padding: 0.7em 1.4em 0.7em 1.1em !important;
-  color: var(--dark) !important;
-  background: var(--primary) !important;
-  border: none !important;
-  box-shadow: 0 0.4em 1.5em -0.5em var(--primary) !important;
-  letter-spacing: 0.05em !important;
-  border-radius: 0.5em !important;
+  align-items: center;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 18px;
+  padding: 0.7em 1.4em 0.7em 1.1em;
+  color: var(--dark);
+  background: var(--primary);
+  border: none;
+  box-shadow: 0 0.4em 1.5em -0.5em var(--primary);
+  letter-spacing: 0.05em;
+  border-radius: 0.5em;
   cursor: pointer;
   touch-action: manipulation;
 }
 
 .upload-btn:hover {
-  box-shadow: 0 0.2em 1.5em -0.5em var(--primary) !important;
+  box-shadow: 0 0.2em 1.5em -0.5em var(--primary);
 }
 
 .upload-container {
@@ -35,6 +35,10 @@
 
   .content {
     z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
     .img-container {
       width: 90%;

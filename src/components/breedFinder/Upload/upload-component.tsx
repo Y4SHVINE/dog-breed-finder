@@ -62,15 +62,14 @@ const Upload = ({ className, setUploadedImage }: UploadProps): JSX.Element => {
               onChange={handleChange}
               accept="image/*"
             />
-            <Button
+            <button
               data-testid="upload-image"
-              variant="contained"
               className="upload-btn"
               id="upload"
               onClick={handleClick}
             >
               {imgSrc ? 'Update' : 'Upload'} Image
-            </Button>
+            </button>
           </div>
         </div>
         {imgSrc && (
