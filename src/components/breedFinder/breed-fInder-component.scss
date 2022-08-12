@@ -1,0 +1,13 @@
+.selected-breed {
+  color: var(--light);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 120px;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 3px;
+  span {
+    color: var(--primary);
+  }
+}

@@ -15,10 +15,11 @@ const configuration = {
     inline: true,
     overlay: true,
     writeToDisk: false,
+    open: true,
   },
   devtool: 'cheap-module-eval-source-map',
   entry: {
-    app: './src/index.ts',
+    app: './src/index.tsx',
   },
   mode: 'development',
   module: {
@@ -31,7 +32,7 @@ const configuration = {
         test: /\.html$/u,
       },
       {
-        test: /\.ts$/u,
+        test: /\.tsx?$/u,
         use: [
           {
             loader: 'ts-loader',
@@ -45,10 +46,11 @@ const configuration = {
         ],
       },
       {
-        test: /\.css$/u,
+        test: /\.(sa|sc|c)ss$/,
         use: [
-          'style-loader',
+          'react-style-loader',
           'css-loader',
+          'sass-loader',
           {
             loader: 'postcss-loader',
             options: {
@@ -66,6 +68,17 @@ const configuration = {
             options: {
               name: '[hash].[ext]',
               outputPath: 'assets/images',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(jpg|png|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 81920,
             },
           },
         ],
@@ -91,13 +104,14 @@ const configuration = {
       inject: true,
       minify: false,
       template: 'src/index.html',
+      favicon: 'src/favicon.ico',
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
   ],
   resolve: {
-    extensions: ['.js', '.ts'],
+    extensions: ['.js', '.ts', '.tsx', '.scss'],
     mainFields: ['browser', 'module', 'main'],
   },
   watch: true,
