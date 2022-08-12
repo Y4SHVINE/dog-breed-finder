@@ -1,6 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
 import './upload-component.scss';
-import Button from '@mui/material/Button';
 
 interface UploadProps {
   /**
