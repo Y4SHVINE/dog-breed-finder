@@ -13,6 +13,7 @@ import {
 } from '../../utils/dog/dog-prediction-util';
 import { errors } from '../../utils/messages/error-message-util';
 import Alert from '../../atoms/alert/alert-component';
+import { RingLoader } from 'react-spinners';
 
 interface BreedFinderProps {
   /**
@@ -29,6 +30,7 @@ const BreedFinder = ({ className }: BreedFinderProps): JSX.Element => {
   const [allBreeds, setAllBreeds] = useState<BreedList>({});
   const [selectedBreed, setSelectedBreed] = useState<string | null>(null);
   const [error, setError] = useState<boolean>(false);
+  const [modelLoading, setModelLoading] = useState<boolean>(true);
 
   const loadModel = async (): Promise<mobilenet.MobileNet> => {
     return await mobilenet.load({ version, alpha });
@@ -48,9 +50,11 @@ const BreedFinder = ({ className }: BreedFinderProps): JSX.Element => {
 
   useEffect((): void => {
     if (model === null) {
+      setModelLoading(true);
       loadModel().then(
         (loadedModel: mobilenet.MobileNet) => {
           setModel(loadedModel);
+          setModelLoading(false);
         },
         (_): void => {
           setError(true);
@@ -95,7 +99,14 @@ const BreedFinder = ({ className }: BreedFinderProps): JSX.Element => {
           It's a <span>{selectedBreed?.toUpperCase()}</span>
         </div>
       )}
-      <Upload setUploadedImage={getPredictionByImage} />
+      {modelLoading && (
+        <div className="ring-loader">
+          <RingLoader color="#ffc900" />
+        </div>
+      )}
+      {model && !modelLoading && (
+        <Upload setUploadedImage={getPredictionByImage} />
+      )}
       {selectedBreed && <Gallery selectedBreed={selectedBreed || ''} />}
     </div>
   );
