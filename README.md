@@ -15,6 +15,12 @@ own when you are finished.
 
 ## Available scripts
 
+To install packages
+
+```bash
+npm install --legacy-peer-deps
+```
+
 To start the project, simply run:
 
 ```bash
