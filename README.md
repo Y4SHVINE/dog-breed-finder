@@ -1,17 +1,7 @@
-# Front End Assignment Boilerplate
+# Dog Breed Finder
 
-This project can serve as a baseline for your front end assignment. Take some
-time to familiarize yourself with the structure, configuration and scripts.
-Depending on how you choose to implement your solution you may find that you
-need to delete or change parts of this base setup — feel free to do so. We have
-set this project up create a more accurate image of what our expectations are,
-and to help you get started. If you feel like it does not help you on your way,
-feel free to discard it and create your own. However, it might prove useful to
-look through this boilerplate regardless to get a better idea of our
-expectations.
-
-Simply clone this project and get started. You can replace this readme with your
-own when you are finished.
+This project is to predict the breed of a dog by uploading a image and then show
+pictures of the predicted dog breed.
 
 ## Available scripts
 
