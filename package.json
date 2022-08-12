@@ -84,7 +84,7 @@
       "prettier --write"
     ]
   },
-  "name": "@ridedott/frontend-assignment-base",
+  "name": "dog-breed-finder",
   "repository": "https://github.com/ridedott/frontend-assignment-base",
   "scripts": {
     "format": "prettier --check \"**/*.{css,js,json,md,ts,yml,yaml}\"",
