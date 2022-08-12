@@ -5,12 +5,13 @@
 
   figure {
     width: 100%;
-    max-width: 32rem;
+    max-width: 16rem;
     margin-bottom: 1rem;
     break-inside: avoid;
 
     img {
       width: 100%;
+      height: 100%;
       border-radius: 0.5rem;
     }
   }

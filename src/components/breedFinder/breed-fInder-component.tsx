@@ -90,7 +90,11 @@ const BreedFinder = ({ className }: BreedFinderProps): JSX.Element => {
         />
       )}
       <Header />
-      <div className="selected-breed">{selectedBreed?.toUpperCase()}</div>
+      {selectedBreed && (
+        <div className="selected-breed">
+          It's a <span>{selectedBreed?.toUpperCase()}</span>
+        </div>
+      )}
       <Upload setUploadedImage={getPredictionByImage} />
       {selectedBreed && <Gallery selectedBreed={selectedBreed || ''} />}
     </div>
