@@ -102,7 +102,7 @@ const configuration = {
     }),
     new HtmlWebpackPlugin({
       inject: true,
-      minify: false,
+      minify: true,
       template: 'src/index.html',
       favicon: 'src/favicon.ico',
     }),
@@ -114,7 +114,7 @@ const configuration = {
     extensions: ['.js', '.ts', '.tsx', '.scss'],
     mainFields: ['browser', 'module', 'main'],
   },
-  watch: true,
+  watch: false,
   watchOptions: {
     ignored: /node_modules/u,
   },

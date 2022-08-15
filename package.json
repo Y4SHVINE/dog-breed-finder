@@ -101,7 +101,7 @@
     "start": "webpack-dev-server --config ./webpack.config.js",
     "test": "jest",
     "types": "tsc --noEmit",
-    "build": "webpack --config ./webpack.config.js"
+    "build": "webpack --config ./webpack.prod.config.js"
   },
   "version": "1.0.0"
 }
