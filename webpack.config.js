@@ -114,7 +114,7 @@ const configuration = {
     extensions: ['.js', '.ts', '.tsx', '.scss'],
     mainFields: ['browser', 'module', 'main'],
   },
-  watch: true,
+  watch: false,
   watchOptions: {
     ignored: /node_modules/u,
   },
