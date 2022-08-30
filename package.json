@@ -10,7 +10,7 @@
   "description": "Search for dogs",
   "devDependencies": {
     "@emotion/react": "^11.10.0",
-    "@emotion/styled": "^11.10.0",
+    "@emotion/styled": "^11.10.4",
     "@modelx/modelx": "^1.0.0",
     "@mui/material": "^5.10.0",
     "@ridedott/eslint-config": "^1.0.0",
